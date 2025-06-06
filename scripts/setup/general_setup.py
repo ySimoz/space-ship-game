@@ -1,4 +1,6 @@
 import pygame
+from scripts.game_states.game_states import setup_states
+from scripts.setup.game_over_setup import game_over_animation_setup
 from scripts.setup.ship_setup import *
 from scripts.setup.enemies_setup import *
 from scripts.setup.projectile_setup import *
@@ -36,3 +38,4 @@ def general_setup(self):
     #initial menu setup
     initial_menu_setup(self)
     gameplay_start_animation_setup(self)
+    game_over_animation_setup(self)

@@ -1,5 +1,6 @@
 import pygame
 from scripts.structure.assets import *
+powerup_assets = PowerUpAssets()
 
 class Powerup(pygame.sprite.DirtySprite):
     def __init__(self, position, size, speed, powerup_name, *groups):
@@ -9,7 +10,7 @@ class Powerup(pygame.sprite.DirtySprite):
         self.size: tuple = size
         self.speed: int = speed
         self.name = powerup_name
-        self.powerup: tuple = PowerUpAssets.powerups.get(self.name)
+        self.powerup: tuple = powerup_assets.powerups.get(self.name)
 
         self.image: pygame.Surface = pygame.transform.scale(self.powerup[1], self.size)  # powerup[1] gives the png image from assets
 

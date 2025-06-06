@@ -33,15 +33,19 @@ def ship_collision(self):
         ):
             give_ship_powerups(self, p_collided.values())
 
-
-
     if self.ship.immunity:
         if pygame.sprite.groupcollide(self.ship_shield_, self.e_projectiles, False, dokillb= True, collided= pygame.sprite.collide_mask):
             print("collision blocked")
-
     elif pygame.sprite.groupcollide(self.ship_, self.e_projectiles, False, dokillb= True, collided= pygame.sprite.collide_mask):
         self.ship.lives -= 1
         print("collision detected")
+        if self.ship.lives == 0 and self.ship.alive_state:
+            self.ship.explode()
+            self.ship_exploded_time = pygame.time.get_ticks()  # Record explosion time
+            self.ship_exploded = True
+            self.gameplay_running_state = False
+            self.game_over_running_state = True
+            self.current_state = self.GAME_OVER_STATE
 
 
 

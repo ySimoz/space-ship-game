@@ -1,6 +1,8 @@
 import pygame
 from scripts.structure.assets import LifeBarAssets
 
+life_bar_assets = LifeBarAssets()
+
 
 class ShipLifeBar(pygame.sprite.Sprite):
     def __init__(self, position, size, state):
@@ -9,7 +11,7 @@ class ShipLifeBar(pygame.sprite.Sprite):
         self.pos = position
         self.size = size
 
-        self.image = pygame.transform.scale(LifeBarAssets.life_bar_images[state], self.size)
+        self.image = pygame.transform.scale(life_bar_assets.life_bar_images[state], self.size)
 
         self.rect = self.image.get_rect()
         self.rect.x, self.rect.y = position[0], position[1]
@@ -21,7 +23,7 @@ class ShipLifeBar(pygame.sprite.Sprite):
         self.current_state = kwargs.get('state', self.current_state)
         self.current_state += kwargs.get('increase_state', 0)
         if self.current_state != self.previous_state:
-            self.image = pygame.transform.scale(LifeBarAssets.life_bar_images[self.current_state], self.size)
+            self.image = pygame.transform.scale(life_bar_assets.life_bar_images[self.current_state], self.size)
             self.previous_state = self.current_state
 
 

@@ -32,6 +32,9 @@ class Ship(pygame.sprite.DirtySprite):  # spaceship class
         self.triple_bullets_boost = False
         self.triple_bullets_effect_recept_time: int = 0
         self.triple_bullets_effect_time: int = 0
+
+        self.alive_state = True
+        self.exploded_time = 0
         
     def move(self, dx, dy):
         self.rect.x += dx
@@ -40,6 +43,14 @@ class Ship(pygame.sprite.DirtySprite):  # spaceship class
 
     def update(self, **kwargs):
         receive_powerups_boost(self, **kwargs)
+
+    def explode(self):
+        from scripts.structure.assets import EnemiesShipsAssets
+        self.image = pygame.transform.scale(EnemiesShipsAssets().e_ships_exploded_1, (110, 80))
+        self.rect.x -= 30
+        self.rect.y -= 10
+        self.exploded_time = pygame.time.get_ticks()
+        self.alive_state = False
 
 
 class ShipShield(pygame.sprite.Sprite):
