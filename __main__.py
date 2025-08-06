@@ -14,8 +14,8 @@ class Game:
         self.running = True  # state of the main loop, set to True runs the program
 
         general_setup(self) # variables and objects setup)
-        setup_states(self)
-        states_running_state(self)
+        setup_states(self) # game states setup
+        states_running_state(self) 
 
     # main function
     def main(self):
